@@ -8,11 +8,25 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+/**
+ * The activity handling the connection to the server
+ */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    /**
+     * The "connect to server" button
+     */
     Button btnGo;
+    /**
+     * The field to insert the IP to
+     */
     EditText editIP;
 
+    /**
+     * The first method that runs when the activity is created.
+     * initializes the button and the textField
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,8 +38,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnGo.setOnClickListener(this);
     }
 
+    /**
+     * runs when the button is clicked.
+     * when the button is clicked, start the second activity
+     * @param v
+     */
     @Override
-
     public void onClick(View v) {
         Intent in = new Intent(this,Main2Activity.class);
         in.putExtra("ip",editIP.getText().toString());

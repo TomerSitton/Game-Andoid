@@ -4,19 +4,36 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.TextView;
 
+/**
+ * The second activity.
+ * shows the client the health of each player
+ */
 public class Main2Activity extends AppCompatActivity {
-    TextView detalies;
+    /**
+     * the text which will show the health
+     */
+    TextView details;
 
+    /**
+     * runs when the activity is created.
+     * runs the {@link ServerTask#execute(Object[])}.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        detalies=findViewById(R.id.txt_details);
+        details =findViewById(R.id.txt_details);
 
         String ip=getIntent().getStringExtra("ip");
         ServerTask server=new ServerTask(ip,2212,this);
         server.execute();
     }
+
+    /**
+     * sets the data to the details {@link TextView}
+     * @param data - the data received from the server
+     */
     public void useData(String data){
         String text = "";
         if (data.contains("player")){
@@ -29,6 +46,6 @@ public class Main2Activity extends AppCompatActivity {
             text = "the winner is player number "+data;
 
 
-        detalies.setText(text);
+        details.setText(text);
     }
 }
